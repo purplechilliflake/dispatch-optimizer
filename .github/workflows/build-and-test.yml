@@ -45,4 +45,4 @@ jobs:
       # compile the code and run our JUnit tests.
       # The '--batch-mode' flag is recommended for non-interactive CI environments.
       - name: Build and Test with Maven
-        run: ./demo/mvnw -B clean install
+        run: ./demo/mvnw -B -f demo/pom.xml clean install
