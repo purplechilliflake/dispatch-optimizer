@@ -1,5 +1,7 @@
 # Dispatch Optimizer
 
+[![Java CI - Build and Test](https://github.com/purplechilliflake/dispatch-optimizer/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/purplechilliflake/dispatch-optimizer/actions/workflows/build-and-test.yml)
+
 A RESTful service built with Spring Boot that optimizes the dispatch of delivery orders to a fleet of vehicles. The service assigns orders based on priority, vehicle capacity, and travel distance to generate an efficient delivery plan.
 
 ## Tech Stack
