@@ -1,0 +1,48 @@
+# A friendly name for our workflow, which will be displayed on GitHub.
+name: Java CI - Build and Test
+
+# --- Trigger Conditions ---
+# This section defines when the workflow will run.
+on:
+  # Run this workflow on every push to the 'main' branch.
+  push:
+    branches: [ "main" ]
+  # Also allow running this workflow manually from the GitHub Actions tab.
+  workflow_dispatch:
+
+# --- Jobs ---
+# A workflow is made up of one or more jobs that run in parallel or sequentially.
+jobs:
+  # We define a single job called 'build'.
+  build:
+    # The type of virtual machine to run the job on.
+    # 'ubuntu-latest' is a standard, reliable choice.
+    runs-on: ubuntu-latest
+
+    # --- Steps ---
+    # A job is a sequence of steps. Each step runs a command or an 'action'.
+    steps:
+      # Step 1: Check out the repository's code
+      # This uses a pre-made action from the GitHub Marketplace.
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up the correct Java version
+      # This action sets up a JDK 17 environment for the subsequent steps.
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin' # A popular, open-source build of the JDK
+
+      # Step 3: Make the Maven Wrapper executable
+      # On Unix-based systems like Ubuntu, we need to grant execute permissions.
+      - name: Make Maven Wrapper Executable
+        run: chmod +x demo/mvnw
+
+      # Step 4: Build with Maven
+      # This is the core step. It runs the same command we used locally to
+      # compile the code and run our JUnit tests.
+      # The '--batch-mode' flag is recommended for non-interactive CI environments.
+      - name: Build and Test with Maven
+        run: ./demo/mvnw -B clean install
