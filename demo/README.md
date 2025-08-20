@@ -21,7 +21,7 @@ A RESTful service built with Spring Boot that optimizes the dispatch of delivery
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/YOUR_USERNAME/dispatch-optimizer.git
+    git clone https://github.com/purplechilliflake/dispatch-optimizer.git
     cd dispatch-optimizer
     ```
 
@@ -69,3 +69,33 @@ Once imported, make sure the application is running locally and execute the requ
 3.  `3. Get Dispatch Plan`
 
 > **Note:** The entire sequence must be run in the same session, as the in-memory database is cleared every time the application restarts.
+
+---
+
+## Running with Docker
+
+This application is containerized and can be run using Docker, without needing to install Java or Maven locally.
+
+### Prerequisites
+
+- Docker Desktop installed and running.
+
+### Steps
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/purplechilliflake/dispatch-optimizer.git
+    cd dispatch-optimizer
+    ```
+
+2.  **Build the Docker image:**
+    From the root directory, run the build command:
+    ```bash
+    docker build -t dispatch-optimizer .
+    ```
+
+3.  **Run the container:**
+    ```bash
+    docker run -p 8080:8080 dispatch-optimizer
+    ```
+    The application will now be running and accessible at `http://localhost:8080`. You can test the endpoints using the Postman collection.

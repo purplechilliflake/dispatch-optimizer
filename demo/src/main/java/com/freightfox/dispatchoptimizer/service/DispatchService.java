@@ -39,7 +39,7 @@ public class DispatchService {
      * @return A list of dispatch plans, one for each vehicle.
      */
     public List<DispatchPlanDto> generateDispatchPlan() {
-        List<Order> unassignedOrders = orderRepository.findAll();
+        List<Order> unassignedOrders = new ArrayList<>(orderRepository.findAll());
         List<Vehicle> allVehicles = vehicleRepository.findAll();
 
         if (allVehicles.isEmpty()) {

@@ -1,0 +1,13 @@
+# Ignore Maven build output
+**/target/
+
+# Ignore Docker files
+.dockerignore
+Dockerfile
+
+# Ignore Git files
+.git
+.gitignore
+
+# Ignore VSCode files
+.vscode

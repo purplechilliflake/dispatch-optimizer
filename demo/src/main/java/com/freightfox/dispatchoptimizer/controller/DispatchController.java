@@ -5,6 +5,10 @@ import com.freightfox.dispatchoptimizer.dto.DispatchPlanDto;
 import com.freightfox.dispatchoptimizer.model.Order;
 import com.freightfox.dispatchoptimizer.model.Vehicle;
 import com.freightfox.dispatchoptimizer.service.DispatchService;
+import com.freightfox.dispatchoptimizer.dto.OrderRequestDto;
+import com.freightfox.dispatchoptimizer.dto.VehicleRequestDto;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +37,7 @@ public class DispatchController {
      * @return A standard success response.
      */
     @PostMapping("/orders")
-    public ResponseEntity<ApiResponseDto> addOrders(@RequestBody Map<String, List<Order>> request) {
+    public ResponseEntity<ApiResponseDto> addOrders(@Valid @RequestBody Map<String, List<Order>> request) {
         // @RequestBody tells Spring to convert the incoming JSON into the specified
         // Java object.
         List<Order> orders = request.get("orders");
@@ -51,7 +55,7 @@ public class DispatchController {
      * @return A standard success response.
      */
     @PostMapping("/vehicles")
-    public ResponseEntity<ApiResponseDto> addVehicles(@RequestBody Map<String, List<Vehicle>> request) {
+    public ResponseEntity<ApiResponseDto> addVehicles(@Valid @RequestBody Map<String, List<Vehicle>> request) {
         List<Vehicle> vehicles = request.get("vehicles");
         dispatchService.saveVehicles(vehicles);
         ApiResponseDto response = new ApiResponseDto("success", "Vehicle details accepted.");
